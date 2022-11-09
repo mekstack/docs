@@ -1,0 +1,55 @@
+---
+kind: pipeline
+type: docker
+name: Mirror code to GitLab
+
+steps:
+- name: mirror repo to GitLab
+  image: python
+  failure: ignore
+  commands:
+  - git push --force https://drone:$GITLAB_KEY@git.miem.hse.ru/mekstack/docs.git
+  environment:
+    GITLAB_KEY:
+      from_secret: gitlab_deploy_key
+  when:
+    branch:
+    - master
+    event:
+    - push
+
+---
+kind: pipeline
+type: docker
+name: Build and deploy docs
+
+steps:
+- name: build
+  image: python
+  commands:
+  - pip install tox sphinx pbr dulwich
+  - tox -e ci -- html
+  volumes:
+  - name: pip-cache
+    path: /root/.cache/pip/
+  environment:
+    SSH_KEY:
+      from_secret: docs_key
+
+- name: deploy
+  image: python
+  commands:
+  - echo '-----BEGIN OPENSSH PRIVATE KEY-----' > key
+  - echo $SSH_KEY >> key
+  - echo '-----END OPENSSH PRIVATE KEY-----' >> key
+  - chmod 600 key
+  - scp -o StrictHostKeyChecking=no -r -i key ./build/html/ "root@web-1.docs.miem:/var/www/" 
+  - scp -o StrictHostKeyChecking=no -r -i key ./build/html/ "root@web-2.docs.miem:/var/www/" 
+  environment:
+    SSH_KEY:
+      from_secret: docs_key
+
+volumes:
+  - name: pip-cache
+    host:
+      path: /tmp/pip-cache
