@@ -1,26 +1,6 @@
 ---
 kind: pipeline
 type: docker
-name: Mirror code to GitLab
-
-steps:
-- name: mirror repo to GitLab
-  image: python
-  failure: ignore
-  commands:
-  - git push --force https://drone:$GITLAB_KEY@git.miem.hse.ru/mekstack/docs.git
-  environment:
-    GITLAB_KEY:
-      from_secret: gitlab_deploy_key
-  when:
-    branch:
-    - master
-    event:
-    - push
-
----
-kind: pipeline
-type: docker
 name: Build and deploy docs
 
 steps:
