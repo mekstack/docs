@@ -10,18 +10,21 @@ Admin Guides
 Bootstrapping kayobe host
 -------------------------
 
-Почему отдельный сервер для kayobe? 
+.. note::
 
-Тогда не произойдет ситуации, когда два разных человека с двумя разными
-конфигурациями одновременно деплоят одно облако.
+    Почему отдельный сервер для kayobe? 
+
+    Тогда не произойдет ситуации, когда два разных человека с двумя разными
+    конфигурациями одновременно деплоят одно облако.
 
 Enroll bifrost inventory
 ************************
 
-.. code-block::
+.. code-block:: bash
 
     export OS_CLOUD=bifrost
-    export BIFROST_INVENTORY_SOURCE=/etc/bifrost/servers.yml cd playbooks
+    export BIFROST_INVENTORY_SOURCE=/etc/bifrost/servers.yml 
+    cd playbooks
     ansible-playbook -vvvv -i inventory/bifrost_inventory.py enroll-dynamic.yaml
 
 Post deploy
