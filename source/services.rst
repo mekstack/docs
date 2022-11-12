@@ -1,15 +1,14 @@
 Services
 ========
 
-TODO Custom Linux Images
-------------------------
+Custom Linux Images
+-------------------
 
 Custom images are provided by the **mekstack** project.
 They are built and auto tested daily.
 
-Our images contain the following modifications:
-
-* Use local pacman, apt, pip and docker mirrors
+Our images are built from distribution's cloud images with the following
+modifications:
 
 * Use :ref:`zram` to optimize RAM utilization
 
@@ -18,7 +17,7 @@ Our images contain the following modifications:
 * Pre-installed packages: ``vim nano ncdu git htop bind net-tools rsync
   wgetpaste bash-completion fzf``
 
-  * Images with Docker have ``docker`` and ``docker-compose`` installed and enabled
+  * Docker images have ``docker`` and ``docker-compose`` installed and enabled
 
 * Timezone set to Europe/Moscow
 
@@ -37,8 +36,12 @@ Our images contain the following modifications:
   * DHCP Client listens on **all** interfaces to support dynamic interface
     attachment
 
-Thanks to these modifications our images are faster and more efficient than
-default cloud images, so use your own images only in special circumstances.
+Changes to be implemented:
+
+* Use local pacman, apt, pip and docker mirrors
+
+With these modifications our images are faster and utilize hypervisors more
+efficiently than default cloud images.
 
 .. note::
 
@@ -56,8 +59,6 @@ Monitoring
 
 Метрики утилизации инстансов своего и чужих проектов можно посмотреть в
 `Instances Dashboard <http://status.corp/d/ysqRegynk/projects>`_.
-
-По предложениям улучшения дашбордов пишите нам в Zulip.
 
 Local Mirrors
 -------------
