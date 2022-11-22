@@ -1,6 +1,75 @@
 Cloud Native
 ============
 
+OpenStack CLI
+-------------
+
+У OpenStack есть свое консольное приложение, через которое можно
+взаимодействовать со всеми доступными API (в web--интерфейсе Horizon, например,
+доступны не все API эндпоинты). 
+
+Устанавливается так:
+
+.. code-block::
+
+   pip install python-openstackclient # Для основных сервисов OpenStack
+   pip install python-octaviaclient # Для Octavia
+
+После этого станет доступна команда ``openstack``.
+
+Чтобы получить доступ к API через openstack--cli, нужно передать информацию для
+авторизации. Это можно сделать через env переменные ``OS_*`` или через файл
+``clouds.yaml``.
+
+Скачать ваш clouds.yaml можно из web--интерфейса. Для этого
+в ``Identity / Application Credentials`` создайте Application
+Credential и сохраните сгенерированный файл clouds.yaml в директорию
+``~/.config/openstack/clouds.yaml``. 
+
+.. note::
+
+    openstack--cli сначала ищет ``clouds.yaml`` в ``$PWD``, а затем
+    в ``~/.config/openstack/``.
+
+В clouds.yaml можно хранить несколько credentials. Выбор credential из файла
+производится переменной ``OS_CLOUD``. Например, для такого clouds.yaml, выбор
+осуществляется через ``export OS_CLOUD=19106`` или ``export OS_CLOUD=370``. 
+
+.. code-block:: yaml
+
+   clouds:
+     19106:
+       auth:
+         auth_url: https://mekstack.ru:5000
+         application_credential_id: "10efec9b264846a19a091b7a6aeed2af"
+         application_credential_secret: "Hlf2--a6axPUjlSAMp3iJ8Qp0xaM"
+       region_name: "MIEM"
+       interface: "public"
+       identity_api_version: 3
+     370:
+       auth:
+         auth_url: https://mekstack.ru:5000
+         application_credential_id: "usf9KLjhYPfMf2erlSYx8WkK9BIGSGz8"
+         application_credential_secret: "8OBauPKX29P3UPXvvvRyROp0xaM"
+       region_name: "MIEM"
+       interface: "public"
+       identity_api_version: 3
+
+Проверить работу можно командой ``openstack token issue``. Вывод должен выглядеть так:
+
+.. code-block:: none
+   
+   $ export OS_CLOUD=mekstack
+   $ openstack token issue
+   +------------+-------------------------------------------+
+   | Field      | Value                                     |
+   +------------+-------------------------------------------+
+   | expires    | 2022-11-23T13:06:49+0000                  |
+   | id         | gAAAAABjfMlpYPfn2D2GxoSRIdRhpztxRCNkppIq0 |
+   | project_id | 01b8eb750e504914ad478e2451043f43          |
+   | user_id    | ec63c92a5b324c9faf43cd1d0a44b428          |
+   +------------+-------------------------------------------+
+
 Pets vs Cattle
 --------------
 
@@ -81,4 +150,4 @@ Ansible имеет большое количество пользователе�
 
 Miroservices
 -------------
-ODO
+TODO
