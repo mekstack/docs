@@ -1,7 +1,7 @@
 FAQ
 ===
 
-Если ответа на ваш вопрос здесь нет, пишите в **#mekstack** в Zulip.
+Если что-то не понятно: **#mekstack** в Zulip.
 
 Create SSH key
 --------------
@@ -20,7 +20,7 @@ Create SSH key
 401 The request you have made requires authentication
 -----------------------------------------------------
 
-Такая ошибка возникает если вы не состоите ни в одном проекте.
+Такая ошибка при логине возникает если вы не состоите ни в одном проекте.
 Попросите своего руководителя добавить вас в проект.
 
 Как добавить несколько ssh ключей в инстанс?
@@ -28,7 +28,7 @@ Create SSH key
 
 Два варианта:
 
-#. **Передать их в user-data.** 
+#. **Передать их в user-data.**
 
    В ``Launch Instance / Configuration`` вставьте в Configuration Script YAML
    конфигурацию формата cloud-init. `Пример.
@@ -37,4 +37,15 @@ Create SSH key
 #. **Сложить их в keypair.**
 
    В `Import Public Key <https://mekstack.ru/project/key_pairs>`_ в поле Public
-   Key нужно вставить все публичные ключи. Они будут скопированы в ``~/.ssh/authorized_keys``.
+   Key нужно вставить все публичные ключи. Они будут скопированы в ``authorized_keys``.
+
+.. note::
+
+   Если в keypair несколько ключей, то сломается Managed K8s (Magnum). Для него
+   в keypair должен быть строго один ключ.
+
+Хайповый вариант: SSH PKI
+*************************
+
+Выпишите корневой SSH сертификат и подпишите им ваши ключи.
+`Хорошая лекция про SSH PKI <https://www.youtube.com/watch?v=lYzklWPTbsQ>`_.
