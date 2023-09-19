@@ -2,8 +2,5 @@
 
 ## Usage
 
-    # Start dev server (refreshes output on change)
     tox
-
-    # Build just HTML output
-    tox -- html
+    tox -e livehtml
