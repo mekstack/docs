@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: docs
+  template:
+    metadata:
+      labels:
+        app: docs
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - docs
+            topologyKey: kubernetes.io/hostname
+      initContainers:
+      - name: build-docs
+        image: ghcr.io/mekstack/docs/builder:latest
+        command:
+        - sh
+        - -c
+        - |
+          git clone https://github.com/mekstack/docs
+          cd docs
+          tox
+          cp -r build/* /html/
+        volumeMounts:
+        - name: html-volume
+          mountPath: /html
+      containers:
+      - name: nginx
+        image: nginx
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: html-volume
+          mountPath: /html
+        - name: nginx-config-volume
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      volumes:
+      - name: html-volume
+        emptyDir: {}
+      - name: nginx-config-volume
+        configMap:
+          name: nginx-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docs
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: docs
