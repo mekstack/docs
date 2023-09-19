@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docs
+  namespace: docs
 spec:
   replicas: 3
   selector:
@@ -68,6 +69,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: docs
+  namespace: docs
 spec:
   type: ClusterIP
   ports:
