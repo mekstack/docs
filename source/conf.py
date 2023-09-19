@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Mekstack'
-copyright = '2022, Mekstack'
+copyright = '2023, Mekstack'
 
 version = 'preprod'
 openstackdocs_auto_version = False
