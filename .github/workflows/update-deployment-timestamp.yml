@@ -17,7 +17,7 @@ jobs:
 
     - name: Update Deployment Timestamp
       run: |
-        DATE_STR=$(date -u +"%d %b %H:%M")
+        DATE_STR=$(TZ="Europe/Moscow" date -u +"%d %b %H:%M")
         sed -i "s/\(name: LAST_UPDATED, value: \)\".*\"/\1\"$DATE_STR\"/" manifests/docs.yaml
 
     - name: Commit and Push Changes
