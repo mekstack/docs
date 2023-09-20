@@ -29,7 +29,7 @@ spec:
       - name: build-docs
         image: ghcr.io/mekstack/docs/builder:latest
         env:
-        - { name: LAST_UPDATED, value: "" }
+        - { name: LAST_UPDATED, value: "20 Sep 10:18" }
         command:
         - sh
         - -c
