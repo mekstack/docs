@@ -28,6 +28,11 @@ spec:
       initContainers:
       - name: build-docs
         image: ghcr.io/mekstack/docs/builder:latest
+        env:
+        - name: LAST_UPDATED
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.annotations['last-updated']
         command:
         - sh
         - -c

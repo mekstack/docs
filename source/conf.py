@@ -2,10 +2,10 @@
 
 # -- Project information
 
-project = 'Mekstack'
+project = 'docs'
 copyright = '2023, Mekstack'
 
-version = 'preprod'
+version = '9999'
 openstackdocs_auto_version = False
 
 # -- General configuration
