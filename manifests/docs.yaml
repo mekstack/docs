@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: docs
   namespace: docs
+  annotations:
+    last-updated: ""
 spec:
   replicas: 3
   selector:
