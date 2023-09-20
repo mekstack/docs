@@ -1,10 +1,8 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: docs
   namespace: docs
-  annotations:
-    last-updated: ""
 spec:
   replicas: 3
   selector:
@@ -31,10 +29,7 @@ spec:
       - name: build-docs
         image: ghcr.io/mekstack/docs/builder:latest
         env:
-        - name: LAST_UPDATED
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.annotations['last-updated']
+        - { name: LAST_UPDATED, value: "" }
         command:
         - sh
         - -c

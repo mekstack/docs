@@ -18,12 +18,12 @@ jobs:
     - name: Update Deployment Timestamp
       run: |
         DATE_STR=$(date -u +"%d %b %H:%M")
-        sed -i '/last-updated:/c\ \ \ \ last-updated: "'"$DATE_STR"'"' ./manifests/docs.yaml
+        sed -i "s/\(name: LAST_UPDATED, value: \)\".*\"/\1\"$DATE_STR\"/" manifests/docs.yaml
 
     - name: Commit and Push Changes
       run: |
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Actions"
-        git add ./mainfests/docs.yaml
-        git commit -m "chore(k8s): bump timestamp for fleet" || echo "No changes to commit"
+        git add manifests/docs.yaml
+        git commit -m "chore(k8s): bump timestamp" || echo "No changes to commit"
         git push

@@ -1,5 +1,5 @@
-Welcome to mekstack docs! (0% chatgpt)
-======================================
+Welcome to mekstack docs!
+=========================
 
 Отзыв настоящего живого пользователя mekstack:
 
