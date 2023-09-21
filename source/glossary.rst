@@ -3,14 +3,14 @@ Glossary
 
 .. _instance:
 
-Instance
---------
+Инстанс
+-------
 
 In OpenStack, we refer to provisioned compute nodes as **instances** and not
 **virtual machines**. Although this might seem like a matter of semantics, it's
 a useful device for a few reasons. The first reason is that it describes the
 deployment mechanism; all compute in OpenStack is the instantiation of a :ref:`glance`
-image with a specified hardware template, the :ref:`flavor`.   
+image with a specified hardware template, the :ref:`flavor`.
 
 The second reason that the term instance is useful is that virtual machines in
 OpenStack do not typically have the same life cycle as they do in traditional
@@ -21,7 +21,7 @@ recovered, whereas instances are rescued or evacuated. Legacy virtualization
 platforms assume resizing and modifying behaviors are in place; cloud
 platforms such as OpenStack expect redeployment of virtual machines or adding
 additional capacity through additional instances, not adding additional
-resources to existing virtual machines. 
+resources to existing virtual machines.
 
 The third reason that we find it useful to use the term instance is that the
 Compute service has evolved over the years to launch a number of different
@@ -97,7 +97,7 @@ VXLAN или GRE протоколов. Для того, чтобы из неё �
 Для того, чтобы получить доступ к адресам внутренней сети из внешней и наоборот,
 необходимо соединить их виртуальным роутером.
 
-.. _floating-ip:
+.. _fip:
 
 Floating IP
 -----------

@@ -19,6 +19,7 @@ extensions = [
 ]
 
 templates_path = ['_templates']
+html_static_path = ['images', 'files']
 
 # -- Options for HTML output
 html_theme = 'openstackdocs'
