@@ -76,7 +76,7 @@ Welcome to mekstack docs!
 
 .. toctree::
 
-   ultra-quick-start
+   heat-quick-start
    quick-start
    cloud-native
    glossary
