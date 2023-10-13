@@ -2,20 +2,18 @@
 Quick Start -Lore
 =================
 
-1. Нажал `Import Public Key <https://mekstack.ru/project/key_pairs>`_
+1. Нажал `Launch Stack <https://mekstack.ru/project/stacks/>`_
 
-2. Нажал `Launch Stack <https://mekstack.ru/project/stacks/>`_
-
-3. | Template Source -> **URL**
+2. | Template Source -> **URL**
    | Template URL -> **https://docs.mekstack.ru/_static/heat-quick-start.yaml**
 
    -> **Next**
 
-4. Настроил, нажал **Launch**
+3. Настроил, нажал **Launch**
 
-5. | Ждешь 10 секунд, в `Instances <https://mekstack.ru/project/instances/>`_ появится твоя виртуалочка
-   | По айпишнику, который 172.18 можно ссшиться
-   | В Ubuntu юзер ``ubuntu``, в Arch юзер ``arch``, в Debian юзер ``debian``
+4. | В `Instances <https://mekstack.ru/project/instances/>`_ появится твоя виртуалочка.
+   | По айпишнику, который 172.18 можно ссшиться.
+   | В Ubuntu юзер ``ubuntu``, в Arch юзер ``arch``, в Debian юзер ``debian``.
    | Конфиг впна возьми из `vpnaas.mekstack.ru <https://vpnaas.mekstack.ru>`_
 
 .. note::

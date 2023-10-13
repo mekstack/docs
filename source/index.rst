@@ -43,7 +43,7 @@ Welcome to mekstack docs!
 * **Мониторинг**
 
   Можно смотреть за здоровьем облака и всех проектов. `status.mekstack.ru
-  <https://https://status.mekstack.ru/d/YZCsB1Qmz/mekstack-home>`_
+  <https://status.mekstack.ru/d/YZCsB1Qmz/mekstack-home>`_
 
 * **Много других *ass**
 
