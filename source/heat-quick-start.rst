@@ -15,7 +15,7 @@ Quick Start -Lore
 
 5. | Ждешь 10 секунд, в `Instances <https://mekstack.ru/project/instances/>`_ появится твоя виртуалочка
    | По айпишнику, который 172.18 можно ссшиться
-   | В Ubuntu юзер ``ubuntu``, в Arch юзер ``arch``
+   | В Ubuntu юзер ``ubuntu``, в Arch юзер ``arch``, в Debian юзер ``debian``
    | Конфиг впна возьми из `vpnaas.mekstack.ru <https://vpnaas.mekstack.ru>`_
 
 .. note::
