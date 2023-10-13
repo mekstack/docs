@@ -7,12 +7,20 @@ Admin Guides
 
   Репозиторий с конфигурацией Kolla, Kayobe и IaC инфраструктуры.
 
+Архитектура
+-----------
+
+.. image:: images/l2.jpg
+   :width: 800
+
+TODO описание архитектуры
+
 Bootstrapping kayobe host
 -------------------------
 
 .. note::
 
-    Почему отдельный сервер для kayobe? 
+    Почему отдельный сервер для kayobe?
 
     Тогда не произойдет ситуации, когда два разных человека с двумя разными
     конфигурациями одновременно деплоят одно облако.
@@ -23,7 +31,7 @@ Enroll bifrost inventory
 .. code-block:: bash
 
     export OS_CLOUD=bifrost
-    export BIFROST_INVENTORY_SOURCE=/etc/bifrost/servers.yml 
+    export BIFROST_INVENTORY_SOURCE=/etc/bifrost/servers.yml
     cd playbooks
     ansible-playbook -vvvv -i inventory/bifrost_inventory.py enroll-dynamic.yaml
 
