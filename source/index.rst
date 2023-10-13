@@ -40,6 +40,11 @@ Welcome to mekstack docs!
   У нас свой впн для доступа к виртуалкам. Я написал его на расте.
   :ref:`vpnaas`
 
+* **Мониторинг**
+
+  Можно смотреть за здоровьем облака и всех проектов. `status.mekstack.ru
+  <https://https://status.mekstack.ru/d/YZCsB1Qmz/mekstack-home>`_
+
 * **Много других *ass**
 
   У нас очень много `\*aaS <https://en.wikipedia.org/wiki/As_a_service>`_,
@@ -61,10 +66,6 @@ Welcome to mekstack docs!
 
   Мы ежедневно обновляем и тестируем имаджи Arch Linux, Ubuntu и Rocky, но
   можно загружать и свои.
-
-* **Мониторинг**
-
-  Можно смотреть за здоровьем облака и всех проектов. `status.mekstack.ru <https://status.mekstack.ru>`_
 
 * **Зеркала**
 
