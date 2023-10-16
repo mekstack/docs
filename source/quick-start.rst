@@ -16,12 +16,12 @@ Quick Start +Lore
 В `mekstack.ru/auth/login <https://mekstack.ru/auth/login>`_ вибирай
 **Authenticate using Mekstack Vault**
 
-| Дальше тебя перекинет на `vault.mekstack.ru <https://vault.mekstack.ru>`_.
+| Дальше тебя перекинет на `vault.mekstack.ru <https://vault.mekstack.ru>`_
 Там по дефолту логин по ``oidc/``: **HSE Identity Provider**, он тебе и нужен
 
-| При входе автоматически создадутся проекты, в которых ты состоишь.
-| Переключаться между ними можно через дропдаун-меню слева сверху.
-| Если ты не состоишь ни в каких проектах то тебя не пустит в облако с ошибкой 401.
+| При входе автоматически создадутся проекты, в которых ты состоишь
+| Переключаться между ними можно через дропдаун-меню слева сверху
+| Если ты не состоишь ни в каких проектах то тебя не пустит в облако с ошибкой 401
 
 ..
     .. note::
@@ -109,6 +109,7 @@ Floating IP выделяются из 172.18.218.0/23, к этой сетке е
 
 .. code::
 
+    wg genkey | tee wg.key | wg pubkey
     sudo wg-quick up ./wg0.conf
     sudo wg-quick down ./wg0.conf
 
