@@ -122,41 +122,38 @@ server, every component is able to fail without impacting the system.
 Terraform
 ---------
 
-Terraform -- инструмент для управления инфраструктурой по технологии `IaC <https://en.wikipedia.org/wiki/Infrastructure_as_code>`_ с
-открытым исходным кодом, позволяющий безопасно и нативно создавать и изменять
-инфраструктуру.
+Terraform -- инструмент для управления инфраструктурой по технологии `IaC
+<https://en.wikipedia.org/wiki/Infrastructure_as_code>`_ с открытым исходным
+кодом, позволяющий безопасно и нативно создавать и изменять инфраструктуру.
 
-Сейчас Terraform не доступен из РФ, однако им все еще можно пользоваться,
-используя зеркала.
+Терраформ нас не любит поэтому запретил доступ к своим серверам. Но у нас
+есть зеркала!
 
-Для этого нужно создать файл ``~/.terraformrc`` с таким содержимым
+Для того чтобы ими воспользоваться нужно создать файл ``~/.terraformrc`` с таким содержимым
 
 .. code-block::
 
-        provider_installation {
-          network_mirror {
-            url     = "https://nm.tf.org.ru/"
-            include = ["registry.terraform.io/*/*"]
-          }
-          direct {
-            exclude = ["registry.terraform.io/*/*"]
-          }
-        }
+    provider_installation {
+      network_mirror {
+        url = "https://registry.comcloud.xyz/"
+        include = ["registry.terraform.io/*/*"]
+      }
+      direct {
+        exclude = ["registry.terraform.io/*/*"]
+      }
+    }
 
-После этого команда ``terraform init`` будет работать
+После этого ``terraform init`` будет работать
 
-Документация terraform тоже не открывается из РФ, но у неё тоже есть зеркало:
-`<https://registry.tfpla.net/providers/terraform-provider-openstack/openstack/latest/docs>`_
+Документация terraform тоже заблочена, но и на неё нашлось зеркало:
+`<https://docs.comcloud.xyz/providers/terraform-provider-openstack/openstack>`_
 
----------
+-------
 Ansible
 -------
 
-Ansible — система управления конфигурациями, написанная на языке программирования Python, с использованием декларативного языка разметки для описания конфигураций. Применяется для автоматизации настройки и развёртывания программного обеспечения.
-
-Ansible имеет большое количество пользователей и нативные модули для решения большинства задач деплоя и конфигурации
-
-`Сайт Ansible <https://www.ansible.com/>`_
+Ansible -- YAML фронтенд к питону, чтобы выполнять почти идемпотентные команды
+на серверах по ссш.
 
 ------------
 Miroservices
