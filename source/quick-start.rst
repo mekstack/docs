@@ -164,3 +164,11 @@ Floating IP выделяются из 172.18.218.0/23, к этой сетке е
 
 .. image:: images/sneedaas.png
   :width: 800
+
+-----------
+Продолжение
+-----------
+
+Все еще недостаточно мекстак лора?
+
+В :doc:`cloud-native` написано про использование Terraform, Ansible, API, openstack-cli.
