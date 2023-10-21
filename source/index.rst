@@ -50,6 +50,11 @@ Welcome to mekstack docs!
   У нас очень много `\*aaS <https://en.wikipedia.org/wiki/As_a_service>`_,
   но если среди них нужной нет, приходи к нам в команду и добавь, не мужик что ли.
 
+* **Кастомные образы**
+
+  Мы ежедневно обновляем и тестируем имаджи Ubuntu и Debian, но можно
+  загружать и свои. :doc:`images`
+
 -----------
 Ещё не фичи
 -----------
@@ -61,11 +66,6 @@ Welcome to mekstack docs!
 * **Интеграция с кабинетом МИЭМ**
 
   Проекты и их состав подтягиваются из кабинета автоматически.
-
-* **Кастомные образы**
-
-  Мы ежедневно обновляем и тестируем имаджи Arch Linux, Ubuntu и Rocky, но
-  можно загружать и свои.
 
 * **Зеркала**
 
@@ -80,6 +80,7 @@ Welcome to mekstack docs!
    heat-quick-start
    quick-start
    cloud-native
+   images
    glossary
    services
    admin
