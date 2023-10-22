@@ -23,7 +23,8 @@ Ubuntu minimal это очень легкий образ, который нуж�
 * **Пакеты**
 
   | ``vim, ncdu, neofetch, fzf, pastebinit, nano, man,``
-  ``iputils-ping, dnsutils, docker, qemu-guest-agent``
+  | ``iputils-ping, dnsutils, docker, qemu-guest-agent``
+  ``bash-completion, python-is-python3, htop``
 
 * **Кастомный .bashrc**
 
