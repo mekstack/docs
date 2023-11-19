@@ -1,16 +1,13 @@
-Glossary
-========
+# Glossary
 
-.. _instance:
 
-Инстанс
--------
+## Инстанс {#instance}
 
 In OpenStack, we refer to provisioned compute nodes as **instances** and not
 **virtual machines**. Although this might seem like a matter of semantics, it's
 a useful device for a few reasons. The first reason is that it describes the
-deployment mechanism; all compute in OpenStack is the instantiation of a :ref:`glance`
-image with a specified hardware template, the :ref:`flavor`.
+deployment mechanism; all compute in OpenStack is the instantiation of a [glance](services.md#glance)
+image with a specified hardware template, the [flavor](glossary.md#flavor).
 
 The second reason that the term instance is useful is that virtual machines in
 OpenStack do not typically have the same life cycle as they do in traditional
@@ -32,28 +29,22 @@ compute provider. Some of the lines between virtual machines and instances are
 becoming more blurred as more enterprise features are added to the OpenStack
 Compute service.
 
-.. _image:
 
-Image
------
+## Image {#image}
 
 Имадж это файл, который содержит виртуальный диск с операционной системой.
 Имаджи используются для создания инстансов.
 
-.. _flavor:
 
-Flavor
-------
+## Flavor {#flavor}
 
 The flavor describes the characteristics of the instantiated image, and it
 normally represents a number of cores of compute with a given amount of memory
 and storage. Storage may be provided by the Compute service or the block
 storage service.
 
-.. _zram:
 
-zram
-----
+## Zarm {#zarm}
 
 В наших имаджах есть zram, он позволяет в 2-3 раза сжимать использующуюся
 оперативную память, тем самым уменьшая количество потребляемых ресурсов.
@@ -61,34 +52,26 @@ zram
 Если на обычных серверах вашему сервису нужен 1 GB RAM, в нашем имадже ему
 хватит 500 MB.
 
-.. _network:
 
-Network
--------
+## Network {#network}
 
 Контейнер для подсетей и роутеров.
 
-.. _subnetwork:
 
-Subnetwork
-----------
+## Subnetwork {#subnetwork}
 
 Блок IP адресов. Подсети используются как источники IP адресов для новых
 портов. Проекты могут создавать подсети с любыми адресами без ограничений.
 
-.. _provider-network:
 
-Provider (external) network
----------------------------
+## Provider (external) network {#provider-network}
 
 Сеть, из которой есть доступ в интернет и которой нельзя управлять из облака.
 Например, сеть ВШЭ. IP адреса в этой сети доступны всем, кто физически
 подключён к этой сети даже вне облака.
 
-.. _overlay-network:
 
-Overlay (internal) network
---------------------------
+## Overlay (internal) network {#overlay-network}
 
 Виртуальная сеть, которой полностью управляет tenant. Реализована при помощи
 VXLAN или GRE протоколов. Для того, чтобы из неё получить доступ в интернет,
@@ -97,19 +80,15 @@ VXLAN или GRE протоколов. Для того, чтобы из неё �
 Для того, чтобы получить доступ к адресам внутренней сети из внешней и наоборот,
 необходимо соединить их виртуальным роутером.
 
-.. _fip:
 
-Floating IP
------------
+## Floating IP {#fip}
 
 Адрес в provider сети, с которого входящие пакеты форвардятся на адрес overlay
 сети. Если такой адрес привязать к инстансу из оверлей сети, к нему можно будет
 подключаться по этому адресу.
 
-.. _security-group:
 
-Security Group
---------------
+## Security Group {#security-group}
 
 Firewall. Набор правил, по которым определяется решение раутинга входящего
 и исходящего трафика. По дефолту запрещает все входящие подключения **кроме
@@ -142,11 +121,12 @@ anti-spoofing rules that perform the following actions:
   and any additional MAC addresses in **allowed-address-pairs** on the port for
   the instance.
 
-Load Balancer
--------------
+
+## Load Balancer {#load_balancer}
 
 Балансировщик нагрузки используется для распределения входящего трафика между
 уже существующими виртуальными машинами.
 
 Наши балансировщики запускаются в конфигурации ACTIVE-STANDBY для обеспечения
 максимальной доступности.
+

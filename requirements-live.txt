@@ -1,4 +1,0 @@
-docutils<0.18
-rstcheck
-sphinx
-sphinx-autobuild

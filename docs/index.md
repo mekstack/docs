@@ -1,10 +1,9 @@
-=========================
-Welcome to mekstack docs!
-=========================
+# Welcome to mekstack docs!
+
 
 Отзыв настоящего живого пользователя mekstack:
 
-    Всем бы впс такой саппорт
+> Всем бы впс такой саппорт
 
 **Mekstack** это небольшое hyperconverged облако для студентов МИЭМ. В связи с
 маленькостью облака клиенты имеют доступ к линии поддержки 24/7 (нет) и мы
@@ -13,77 +12,57 @@ Welcome to mekstack docs!
 автоматически предоставляется 950 Gbps DDoS защита, 99.(9) SLA и персональный
 аудитор из отдела Информационной Безопасности НИУ ВШЭ.
 
-**Начало работы с облачной платформой мекстак:** :doc:`quick-start`
+**Начало работы с облачной платформой мекстак:** [quick-start](quick-start.md)
 
-**Начало работы с сайтом для запуска виртуалок:** :doc:`heat-quick-start`
+**Начало работы с сайтом для запуска виртуалок:** [heat-quick-start](heat-quick-start.md)
 
-----
-Фичи
-----
 
-* **Cloud Native High Availability Eventual Consistency Monolithic Nocode Nanoservices**
+## Фичи
+
+- **Cloud Native High Availability Eventual Consistency Monolithic Nocode Nanoservices**
 
   В мекстаке самый хайповый стек. Пейсмейкеры, кипалайведы, актив-актив фейловеры, раст, бгп.
   Влажный сон Ycombinator.
 
-* **Software Defined Networking**
+- **Software Defined Networking**
 
   Можно создавать Geneve сети, виртуальные распределенные роутеры, фаерволы и
   лоадбалансеры.
 
-* **SNEEDaaS**
+- **SNEEDaaS**
 
   SNI-Enabled Endpoint Delivery as a Service.
-  Сервис для публикации ваших HTTP(S) сервисов в интернете.
-  :ref:`sneedaas`
+  [Сервис](services.md#sneedaas) для публикации ваших HTTP(S) сервисов в интернете.
 
-* **VPNaaS**
+- **VPNaaS**
 
-  У нас свой впн для доступа к виртуалкам. Я написал его на расте.
-  :ref:`vpnaas`
+  У нас свой [впн](services.md#vpnaas) для доступа к виртуалкам. Я написал его на расте.
 
-* **Мониторинг**
+- **Мониторинг**
 
-  Можно смотреть за здоровьем облака и всех проектов. `status.mekstack.ru
-  <https://status.mekstack.ru/d/YZCsB1Qmz/mekstack-home>`_
+  Можно смотреть за здоровьем облака и всех проектов. [status.mekstack.ru](https://status.mekstack.ru/d/YZCsB1Qmz/mekstack-home)
 
-* **Много других *ass**
+- **Много других *ass**
 
-  У нас очень много `\*aaS <https://en.wikipedia.org/wiki/As_a_service>`_,
+  У нас очень много [*aaS](https://en.wikipedia.org/wiki/As_a_service),
   но если среди них нужной нет, приходи к нам в команду и добавь, не мужик что ли.
 
 * **Кастомные образы**
 
   Мы ежедневно обновляем и тестируем имаджи Ubuntu и Debian, но можно
-  загружать и свои. :doc:`images`
+  загружать и свои. [images](images.md)
 
------------
-Ещё не фичи
------------
 
-* **Live Migrations**
+## Ещё не фичи
+
+- **Live Migrations**
 
   Инстансы автоматически балансируются между серверами для произодительности и аптайма.
 
-* **Интеграция с кабинетом МИЭМ**
+- **Интеграция с кабинетом МИЭМ**
 
   Проекты и их состав подтягиваются из кабинета автоматически.
 
-* **Зеркала**
+- **Зеркала**
 
   В LAN есть зеркала разных репозиториев.
-
-----------
-Содержание
-----------
-
-.. toctree::
-
-   heat-quick-start
-   quick-start
-   cloud-native
-   images
-   glossary
-   services
-   admin
-   faq

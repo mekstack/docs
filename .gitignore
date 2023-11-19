@@ -1,3 +1,2 @@
-.venv
-build
-openstackdocstheme
+node_modules/
+docs-html/

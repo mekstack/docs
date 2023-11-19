@@ -13,24 +13,29 @@ data:
     }
 
     http {
-      include      mime.types;
-      default_type application/octet-stream;
-
       keepalive_timeout   65;
-      types_hash_max_size 4096;
 
       server {
         listen 80;
 
         location / {
-          root /html;
-          index index.html;
+          resolver kube-dns.kube-system.svc.cluster.local;
+          set $bucket "mekstack-docs.website.yandexcloud.net";
+          proxy_intercept_errors on;
+          proxy_redirect off;
+          proxy_set_header Host $bucket;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_hide_header x-amz-id-2;
+          proxy_hide_header x-amz-request-id;
+
+          proxy_pass http://$bucket$request_uri;
         }
 
         location /healthz {
-            access_log off;
-            add_header 'Content-Type' 'application/json';
-            return 200 '{"status":"UP"}';
+          access_log off;
+          add_header 'Content-Type' 'application/json';
+          return 200 '{"status":"UP"}';
         }
       }
     }
