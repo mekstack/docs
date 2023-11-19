@@ -9,12 +9,12 @@
 
 Устанавливается так:
 
-``` bash
-   pip install python-openstackclient # Для основных сервисов OpenStack
-   # остальные клиенты выполнены модулями и их можно устанавливать отдельно
-   pip install python-octaviaclient # Для Octavia
-   pip install python-magnumclient # Для Magnum k8s
-   pip install python-{{ servicename }}client # В общем
+```bash
+pip install python-openstackclient # Для основных сервисов OpenStack
+# остальные клиенты выполнены модулями и их можно устанавливать отдельно
+pip install python-octaviaclient # Для Octavia
+pip install python-magnumclient # Для Magnum k8s
+pip install python-{{ servicename }}client # В общем
 ```
 
 После этого станет доступна команда ``openstack``.
@@ -40,29 +40,29 @@ Ansible, Terraform, openstacksdk, Gophercloud и остальные.
 Например, для такого клаудса выбрать проект можно через ``export
 OS_CLOUD=19106`` или ``export OS_CLOUD=370``.
 
-``` yaml
-   clouds:
-     19106:
-       auth:
-         auth_url: https://keystone.api.mekstack.ru/v3
-         application_credential_id: "10efec9b264846a19a091b7a6aeed2af"
-         application_credential_secret: "Hlf2--a6axPUjlSAMp3iJ8Qp0xaM"
-       region_name: "MIEM"
-       interface: "public"
-       identity_api_version: 3
-     370:
-       auth:
-         auth_url: https://keystone.api.mekstack.ru/v3
-         application_credential_id: "usf9KLjhYPfMf2erlSYx8WkK9BIGSGz8"
-         application_credential_secret: "8OBauPKX29P3UPXvvvRyROp0xaM"
-       region_name: "MIEM"
-       interface: "public"
-       identity_api_version: 3
+```yaml
+clouds:
+ 19106:
+   auth:
+     auth_url: https://keystone.api.mekstack.ru/v3
+     application_credential_id: "10efec9b264846a19a091b7a6aeed2af"
+     application_credential_secret: "Hlf2--a6axPUjlSAMp3iJ8Qp0xaM"
+   region_name: "MIEM"
+   interface: "public"
+   identity_api_version: 3
+ 370:
+   auth:
+     auth_url: https://keystone.api.mekstack.ru/v3
+     application_credential_id: "usf9KLjhYPfMf2erlSYx8WkK9BIGSGz8"
+     application_credential_secret: "8OBauPKX29P3UPXvvvRyROp0xaM"
+   region_name: "MIEM"
+   interface: "public"
+   identity_api_version: 3
 ```
 
 Затестить можно командой ``openstack token issue`` например. Вывод должен выглядеть так:
 
-``` none
+```
    $ OS_CLOUD=mekstack openstack token issue
    +------------+-------------------------------------------+
    | Field      | Value                                     |
@@ -120,17 +120,16 @@ Terraform -- инструмент для управления инфрастру
 
 Для того чтобы ими воспользоваться нужно создать файл ``~/.terraformrc`` с таким содержимым
 
-``` terraform
-
-    provider_installation {
-      network_mirror {
-        url = "https://registry.comcloud.xyz/"
-        include = ["registry.terraform.io/*/*"]
-      }
-      direct {
-        exclude = ["registry.terraform.io/*/*"]
-      }
-    }
+```terraform
+provider_installation {
+  network_mirror {
+    url = "https://registry.comcloud.xyz/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
 ```
 
 После этого ``terraform init`` будет работать
