@@ -1,0 +1,19 @@
+title: Documentation Project Template
+href: index.md
+items: 
+  - name: Quick Start -Lore
+    href: heat-quick-start.md
+  - name: Quick Start +Lore
+    href: quick-start.md
+  - name: Cloud Native
+    href: cloud-native.md
+  - name: Linux Autobuilds
+    href: images.md
+  - name: Glossary
+    href: glossary.md
+  - name: Services
+    href: services.md
+  - name: Admin Guides
+    href: admin.md
+  - name: FAQ
+    href: faq.md

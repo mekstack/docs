@@ -1,0 +1,43 @@
+name: docs-build-action
+description: Build & Upload documentation
+
+inputs:
+  revision:
+    required: true
+  project-name:
+    required: true
+  storage-bucket:
+    required: true
+  storage-endpoint:
+    required: true
+  storage-access-key-id:
+    required: true
+  storage-secret-access-key:
+    required: true
+  storage-region:
+    required: true
+  src-root:
+    default: "./"
+  build-root:
+    default: "./_docs-build"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: npm i @diplodoc/cli -g
+      shell: bash
+    - run: yfm -i ${{ inputs.src-root }} -o ${{ inputs.build-root }}
+      shell: bash
+    - name: Upload to S3
+      shell: bash
+      run: |
+        yfm publish \
+          -i "${{ inputs.build-root }}" \
+          --endpoint "${{ inputs.storage-endpoint }}" \
+          --region "${{ inputs.storage-region }}" \
+          --bucket "${{ inputs.storage-bucket }}" \
+          --access-key-id "${{ inputs.storage-access-key-id }}" \
+          --secret-access-key "${{ inputs.storage-secret-access-key }}"
