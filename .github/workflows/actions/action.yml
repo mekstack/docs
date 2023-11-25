@@ -32,12 +32,6 @@ runs:
     - run: yfm -i ${{ inputs.src-root }} -o ${{ inputs.build-root }}
       shell: bash
 
-    - name: Install s3cmd
-      run: |
-        sudo apt-get update
-        sudo apt-get install s3cmd
-      shell: bash
-
     - name: Upload to S3
       shell: bash
       run: |
@@ -56,7 +50,7 @@ runs:
           --prefix "${PREFIX}/"
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
 
     - name: Install dependencies
       run: |
