@@ -54,26 +54,12 @@ runs:
           --access-key-id "${{ inputs.storage-access-key-id }}" \
           --secret-access-key "${{ inputs.storage-secret-access-key }}" \
           --prefix "${PREFIX}/"
-    - name: Debug API Request
-      shell: bash
-      run: |
-        PR_NUMBER="${{ github.event.pull_request.number }}"
-        DOCS_URL="https://pr-${PR_NUMBER}.docs.mekstack.ru"
-        COMMENT="Документация доступна по ссылке: [${DOCS_URL}](${DOCS_URL})"
-        GITHUB_API_URL="https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
-        curl -s -H "Authorization: Bearer ${{ inputs.github-token }}" \
-             -X POST \
-             -d '{"body": "'"$COMMENT"'"}' \
-             "$GITHUB_API_URL"
 
     - name: Set up Python
       uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
         pip install boto3 PyGithub
       shell: bash
 
@@ -83,36 +69,25 @@ runs:
       run: |
         import os
         import requests
-        
+
         pr_number = os.getenv("PR_NUMBER")
         repo = os.getenv("GITHUB_REPOSITORY")
         token = os.getenv("GITHUB_TOKEN")
         api_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
         comment_body = f"Docs are available at: [https://pr-{pr_number}.docs.mekstack.ru](https://pr-{pr_number}.docs.mekstack.ru)"
-        
-        headers = {"Authorization": f"token {token}"}
-        
-        try:
-            response = requests.get(api_url, headers=headers)
-            response.raise_for_status()  # Raise an error for bad responses
-            comments = response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching comments: {e}")
-            comments = []
-        
-        # Check if the 'github-actions[bot]' is not in the list of user logins
+
+        headers = {"Authorization": f"Token {token}"}
+        comments = requests.get(api_url, headers=headers).json()
+
         if "github-actions[bot]" not in [c['user']['login'] for c in comments]:
-            try:
-                response = requests.post(api_url, headers=headers, json={"body": comment_body})
-                response.raise_for_status()  # Raise an error for bad responses
-            except requests.exceptions.RequestException as e:
-                print(f"Error posting comment: {e}")
+            requests.post(api_url, headers=headers, json={"body": comment_body})
+
       env:
         PR_NUMBER: ${{ github.event.pull_request.number }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
         GITHUB_REPOSITORY: ${{ github.repository }}
 
-    - name: Delete unuse pull-requests catalogs
+    - name: Delete build files for closed pull requests
       run: python .github/workflows/scripts/main.py
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
