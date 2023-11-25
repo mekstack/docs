@@ -17,7 +17,7 @@ data:
 
       server {
         listen 80;
-	server_name docs.mekstack.ru;
+        server_name docs.mekstack.ru;
 
         location / {
           resolver kube-dns.kube-system.svc.cluster.local;
@@ -42,7 +42,7 @@ data:
 
       server {
         listen 80;
-	server_name "~^pr-(?<branch>\d{1,3})\.mekstack\.ru$";
+        server_name "~^pr-(?<branch>\d{1,3})\.mekstack\.ru$";
 
         location / {
           resolver kube-dns.kube-system.svc.cluster.local;
@@ -56,12 +56,6 @@ data:
           proxy_hide_header x-amz-request-id;
 
           proxy_pass http://$bucket$request_uri;
-        }
-
-        location /healthz {
-          access_log off;
-          add_header 'Content-Type' 'application/json';
-          return 200 '{"status":"UP"}';
         }
       }
     }
