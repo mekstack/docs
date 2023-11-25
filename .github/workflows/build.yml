@@ -2,9 +2,17 @@ name: Build
 
 on:
   push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   build-docs:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -12,10 +20,10 @@ jobs:
       - name: Build
         uses: ./.github/workflows/actions
         with:
-          revision: "pr-${{ github.event.pull_request.number }}"
           src-root: "./docs"
           storage-endpoint: ${{ vars.DIPLODOC_STORAGE_ENDPOINT }}
           storage-region: ${{ vars.DIPLODOC_STORAGE_REGION }}
           storage-bucket: ${{ vars.DIPLODOC_STORAGE_BUCKET }}
           storage-access-key-id: ${{ secrets.DIPLODOC_ACCESS_KEY_ID }}
           storage-secret-access-key: ${{ secrets.DIPLODOC_SECRET_ACCESS_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

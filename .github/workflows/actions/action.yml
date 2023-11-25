@@ -2,6 +2,8 @@ name: docs-build-action
 description: Build & Upload documentation
 
 inputs:
+  github-token:
+    required: true
   storage-bucket:
     required: true
   storage-endpoint:
@@ -23,17 +25,72 @@ runs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+
     - run: npm i @diplodoc/cli -g
       shell: bash
+
     - run: yfm -i ${{ inputs.src-root }} -o ${{ inputs.build-root }}
       shell: bash
+
     - name: Upload to S3
       shell: bash
       run: |
+        if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          PREFIX="pr-${{ github.event.pull_request.number }}"
+        else
+          PREFIX="master"
+        fi
         yfm publish \
           -i "${{ inputs.build-root }}" \
           --endpoint "${{ inputs.storage-endpoint }}" \
           --region "${{ inputs.storage-region }}" \
           --bucket "${{ inputs.storage-bucket }}" \
           --access-key-id "${{ inputs.storage-access-key-id }}" \
-          --secret-access-key "${{ inputs.storage-secret-access-key }}"
+          --secret-access-key "${{ inputs.storage-secret-access-key }}" \
+          --prefix "${PREFIX}/"
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+
+    - name: Install dependencies
+      run: |
+        pip install boto3 PyGithub
+      shell: bash
+
+    - name: Add comment
+      if: github.event_name == 'pull_request'
+      shell: python
+      run: |
+        import os
+        import requests
+
+        pr_number = os.getenv("PR_NUMBER")
+        repo = os.getenv("GITHUB_REPOSITORY")
+        token = os.getenv("GITHUB_TOKEN")
+        api_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
+        comment_body = f"Docs are available at: [https://pr-{pr_number}.docs.mekstack.ru](https://pr-{pr_number}.docs.mekstack.ru)"
+
+        headers = {"Authorization": f"Token {token}"}
+        comments = requests.get(api_url, headers=headers).json()
+
+        if "github-actions[bot]" not in [c['user']['login'] for c in comments]:
+            requests.post(api_url, headers=headers, json={"body": comment_body})
+
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+
+    - name: Delete build files for closed pull requests
+      run: python .github/workflows/scripts/main.py
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_REPO: ${{ github.repository }}
+        STORAGE_BUCKET: ${{ inputs.storage-bucket }}
+        STORAGE_ENDPOINT: ${{ inputs.storage-endpoint }}
+        STORAGE_ACCESS_KEY_ID: ${{ inputs.storage-access-key-id }}
+        STORAGE_SECRET_ACCESS_KEY: ${{ inputs.storage-secret-access-key }}
+        STORAGE_REGION: ${{ inputs.storage-region }}
+        SRC_ROOT: ${{ inputs.src-root }}
+        BUILD_ROOT: ${{ inputs.build-root }}
+      shell: bash
