@@ -30,7 +30,7 @@ mekstack/docs/docs
 
 # Настройка S3
 
-1. Переходим на сайт [Yandex Clouud](https://cloud.yandex.ru/services/storage)  
+1. Переходим на сайт [Yandex Cloud](https://cloud.yandex.ru/services/storage)  
 2. Регистрируемся при необходимости и переходим в [консоль](https://console.cloud.yandex.ru/)  
 3. Жмем в верхнем правом углу **Создать ресурс**, там выбираем **Бакет**, вводим желаемое имя бакета и его размер, выбираем **Доступ на чтение объектов: публичный**, чтобы Nginx имел доступ к документации.  
 4. Далее нужно создать своего рода токен, по которому через API мы сможем управлять бакетом. Переходим на главную страницу [консоли](https://console.cloud.yandex.ru/) и жмем на **Сервисные аккаунты**, в верхнем правом углу выбираем **Создать сервисный аккаунт**, вводит желаемое имя и описание, выбираем **Роль: admin**, жмем создать и записываем куда-нибудь **acces_key** и **secret_key**.
@@ -43,13 +43,3 @@ mekstack/docs/docs
         - **DIPLODOC_STORAGE_BUCKET** со значением имени бакета, которое вы указали на этапе создания бакета
         - DIPLODOC_STORAGE_ENDPOINT со значением `https://storage.yandexcloud.net`
         - DIPLODOC_STORAGE_REGION со значением `ru-central1`
-
-
-# CI/CD
-Сборка документации, выгрузка на S3 и ее хостинг автоматизированы. Все пайплайны, выполняющие это расположены в [*.github/workflows*](./.github/workflows/). Для их нормального функционирования, в настройках репозитория должны быть добавлены следующие:
-- Секреты:
-    - **DIPLODOC_ACCESS_KEY_ID**
-    - **DIPLODOC_SECRET_ACCESS_KEY**
-    - **GH_TOKEN**
-> GitHub токен можно создать в Profile -> Settings -> Developer settings -> Personal access tokens -> Tokens (classic). Жмем Generate new token (classic). Указываем любое имя и в scopes выбираем только подпункты `repo:status` и `public_repo`, так как это минимально необходимые права для того чтобы пайплайн мог по API запросить список всех активных Pull Request'ов и писать комментарий к Pull Request'у с ссылкой на документацию.
-
