@@ -1,6 +1,7 @@
 import os
-import boto3
 import re
+
+import boto3
 from github import Github
 
 aws_access_key_id = os.environ.get("STORAGE_ACCESS_KEY_ID")
@@ -23,15 +24,15 @@ s3 = boto3.client(
 def get_root_folders_in_bucket_nums(bucket):
     objects = s3.list_objects(Bucket=bucket)
     nums = []
-    
+
     for obj in objects.get("Contents", []):
         key = obj["Key"]
         components = key.split("/")
-        
+
         if len(components) > 0:
             folder_name = components[0]
-            match = re.match(r'pr-(\d+)', folder_name)
-            
+            match = re.match(r"pr-(\d+)", folder_name)
+
             if match:
                 nums.append(match.group(1))
     return nums
@@ -40,16 +41,16 @@ def get_root_folders_in_bucket_nums(bucket):
 def get_open_pull_request_nums(github_token):
     g = Github(github_token)
     repo = g.get_repo(github_repo)
-    open_pulls = repo.get_pulls(state='open')
+    open_pulls = repo.get_pulls(state="open")
     return [str(pull_request.number) for pull_request in open_pulls]
 
 
 def delete_folder_in_bucket(bucket, folder):
     objects = s3.list_objects(Bucket=bucket, Prefix=folder)
-    
+
     for obj in objects.get("Contents", []):
         s3.delete_object(Bucket=bucket, Key=obj["Key"])
-    
+
     s3.delete_object(Bucket=bucket, Key=folder)
 
 
