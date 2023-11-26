@@ -6,7 +6,7 @@ metadata:
 data:
   nginx.conf: |-
     user nginx;
-    worker_processes  1;
+    worker_processes  8;
 
     events {
       worker_connections  512;
@@ -20,17 +20,15 @@ data:
         server_name docs.mekstack.ru;
 
         location / {
-          resolver kube-dns.kube-system.svc.cluster.local;
-          set $bucket "mekstack-docs.website.yandexcloud.net/master/index.html";
+          resolver kube-dns.kube-system.svc.cluster.local ipv6=off;
+          set $bucket "mekstack-docs.website.yandexcloud.net";
           proxy_intercept_errors on;
           proxy_redirect off;
           proxy_set_header Host $bucket;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_hide_header x-amz-id-2;
-          proxy_hide_header x-amz-request-id;
 
-          proxy_pass http://$bucket$request_uri;
+          proxy_pass http://$bucket/master$request_uri;
         }
 
         location /healthz {
@@ -42,20 +40,18 @@ data:
 
       server {
         listen 80;
-        server_name "~^pr-(?<branch>\d{1,3})\.mekstack\.ru$";
+        server_name "~^pr-(?<branch>\d{1,3})\.docs\.staging\.mekstack\.ru$";
 
         location / {
-          resolver kube-dns.kube-system.svc.cluster.local;
-          set $bucket "mekstack-docs.website.yandexcloud.net/pr-$branch/index.html";
+          resolver kube-dns.kube-system.svc.cluster.local ipv6=off;
+          set $bucket "mekstack-docs.website.yandexcloud.net";
           proxy_intercept_errors on;
           proxy_redirect off;
           proxy_set_header Host $bucket;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_hide_header x-amz-id-2;
-          proxy_hide_header x-amz-request-id;
 
-          proxy_pass http://$bucket$request_uri;
+          proxy_pass http://$bucket/pr-$branch$request_uri;
         }
       }
     }
