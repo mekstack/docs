@@ -5,6 +5,21 @@ items:
     expanded: true
     items:
       - name: Фичи
-        #href: faq/401.md
+        href: about/features.md
       - name: Юзкейсы
-        #href: faq/how-to-ssh.md
+        href: about/usecases.md
+  - name: Quick Start
+    expanded: true
+    items:
+      - name: Обзор
+        href: quick-start/index.md
+      - name: Redpill
+        href: quick-start/redpill.md
+      - name: Bluepill
+        href: quick-start/bluepill.md
+      - name: VPNaaS
+        href: quick-start/vpnaas.md
+      - name: Публикация сайтов
+        href: quick-start/publish.md
+  - name: FAQ
+    #href:
