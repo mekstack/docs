@@ -1,0 +1,37 @@
+title: Mekstack Cloud
+description:
+  - >
+    Мекстак это опенсорсное гиперконвергентное высокодоступное облако для студентов МИЭМ.
+  - >
+    В связи с маленькостью облака клиенты имеют доступ к линии поддержки 24/7, которая довольно расслабленно работает.
+    Сервера мекстака располагаются в серверной МИЭМа, поэтому каждому серверу автоматически предоставляется 950 Gbps DDoS защита, 99.(9) SLA и персональный аудитор из отдела Информационной Безопасности НИУ ВШЭ.
+  - >
+    Плюс гигабайт рамы за звездочку <a href=https://github.com/mekstack target="_blank">github.com/mekstack</a>
+
+meta:
+  title: Главная
+links:
+- title: Quick Start (redpill)
+  description: Создание сети, подсети, роутера, секгрупп, инстанса, фипа и домена с нуля за ручку
+  href: redpill/
+- title: Quick Start (bluepill)
+  description: Создание виртуалки, не зная, что такое виртуалка
+  href: bluepill/
+- title: Cloud Native
+  description: API, CLI, Ansible, Terraform
+  href: cloud-native/
+- title: Glossary
+  description: Что такое виртуалка...
+  href: glossary/
+- title: Services
+  description: VPNaaS, Наташа, Зеркала, K8s, Мониторинг, Gopnik
+  href: services/
+- title: FAQ
+  description: Почему не виртуалка...
+  href: faq/
+- title: Postmortems
+  description: Пишем чаще чем работаем
+  href: arch/
+- title: NDA
+  description: Секреты админов мекстака
+  href: nda/
