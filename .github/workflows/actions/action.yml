@@ -68,7 +68,7 @@ runs:
         repo = os.getenv("GITHUB_REPOSITORY")
         token = os.getenv("GITHUB_TOKEN")
         api_url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
-        comment_body = f"Docs are available at: [https://pr-{pr_number}.docs.mekstack.ru](https://pr-{pr_number}.docs.mekstack.ru)"
+        comment_body = f"Docs are available at: [https://pr-{pr_number}.docs.staging.mekstack.ru](https://pr-{pr_number}.docs.staging.mekstack.ru)"
 
         headers = {"Authorization": f"Token {token}"}
         comments = requests.get(api_url, headers=headers).json()
