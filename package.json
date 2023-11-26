@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "serve.js",
   "scripts": {
-    "start": "npm run build:docs && node scripts/serve.js",
+    "start": "npm run build:docs && node serve.js",
     "build:docs": "yfm --input docs --output docs-html"
   },
   "dependencies": {
