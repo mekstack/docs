@@ -13,10 +13,10 @@ meta:
 links:
 - title: Quick Start (redpill)
   description: Создание сети, подсети, роутера, секгрупп, инстанса, фипа и домена с нуля за ручку
-  href: redpill/
+  href: quick-start/redpill.md
 - title: Quick Start (bluepill)
   description: Создание виртуалки, не зная, что такое виртуалка
-  href: bluepill/
+  href: quick-start/bluepill.md
 - title: Cloud Native
   description: API, CLI, Ansible, Terraform
   href: cloud-native/

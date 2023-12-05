@@ -1,0 +1,10 @@
+title: Mekstack NDA
+href: index.yaml
+items:
+  - name: ADR
+    expanded: true
+    items:
+      - name: Наташа
+        #href: about/features.md
+      - name: Пиво
+        #href: about/usecases.md

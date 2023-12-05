@@ -1,0 +1,14 @@
+title: Mekstack NDA секретики
+description:
+  - >
+    Тут нда
+
+meta:
+  title: Главная
+links:
+- title: ADR
+  description: Дизайн доки
+    #href: .md
+- title: Типовые операции
+  description: Как поднять прод
+    #href: quick-start/bluepill.md
