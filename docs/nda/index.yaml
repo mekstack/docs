@@ -1,14 +1,14 @@
-title: Mekstack NDA секретики
+title: Mekstack NDA
 description:
   - >
-    Тут нда
+    Внутренние документы мекстака
 
 meta:
-  title: Главная
+  title: NDA
 links:
 - title: ADR
   description: Дизайн доки
-    #href: .md
+  href: adr/index
 - title: Типовые операции
-  description: Как поднять прод
-    #href: quick-start/bluepill.md
+  description: Как поднять прод?
+  href: ops/index
