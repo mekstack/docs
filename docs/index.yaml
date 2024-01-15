@@ -31,7 +31,7 @@ links:
   href: faq/
 - title: Postmortems
   description: Пишем чаще чем работаем
-  href: arch/
+  href: postmortems/
 - title: NDA
   description: Секреты админов мекстака
   href: nda/
