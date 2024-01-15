@@ -8,14 +8,23 @@
     "build:docs": "yfm --input docs --output docs-html"
   },
   "dependencies": {
+    "@diplodoc/cli": "^4.8.0",
     "@doc-tools/docs": "^3.25.0",
+    "@gravity-ui/expresskit": "^0.4.0",
+    "@gravity-ui/nodekit": "^0.3.0",
     "chokidar": "^3.5.3",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-csp-header": "^5.2.1",
     "glob": "^10.3.4",
     "lodash": "^4.17.21",
+    "octokit": "^3.1.0",
     "open": "^8.4.2",
     "parse5": "^7.1.2",
     "parse5-utils": "^2.0.0",
-    "serve-static": "^1.15.0"
+    "serve-static": "^1.15.0",
+    "undici": "^5.26.4",
+    "yfm": "^0.2.0"
   }
 }
