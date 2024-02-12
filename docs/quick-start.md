@@ -72,7 +72,7 @@
 
 1. Compute -> Instances -> Launch Instance
 
-2. В Source Выбери имадж (это как iso, но без ручной установки)
+2. Select Boot Source -> Image, далее внизу страницы выбрать нужный Image (image - как .iso образ, но без ручной установки)
 
 3. Там же выбери прикреплять ли дополнительный СХДшный диск к виртуалке кнопкой Create New Volume.  
    Если не создавать, то будет только локальный диск 10-20 гигов с гипера, но он быстрее.
@@ -83,9 +83,11 @@
 
 6. Security Groups пусть остаются на **default**
 
-7. В Key Pair добавь свой публичный SSH ключ
+7. В Key Pair добавь свой публичный SSH ключ:
+   - ``ssh-keygen -t ed25519``, и скопировать получившийся публичный ключ из файла ``ed25519.pub`` (``more ed25519.pub``)
+   - Import Key Pair -> Выбрать имя, выбрать Key Type -> SSH Key, и вставить ваш публичный ключ в поле Public Key
 
-8. Всё, запускай инстанс
+9. Launch Instance (внизу экрана)
 
 Инстанс сейчас в твоей приватной сетке, чтобы до него достучаться нужно прицепить к инстансу [Fip](glossary.md#fip).  
 Floating IP выделяются из 172.18.218.0/23, к этой сетке есть доступ из под впн.
@@ -97,10 +99,17 @@ Floating IP выделяются из 172.18.218.0/23, к этой сетке е
 
 ## [vpnaas.mekstack.ru](https://vpnaas.mekstack.ru)
 
-Сгенерь приватный и публичный ключ, вставь в сайт публичный, а свой конфиг приватный и готово.
+1. Сгенерировать приватный и публичный ключ при помощи Wireguard: ``wg genkey | tee wg.key | wg publickey`` - скопировать выведенную строку и запомнить приватный ключ wg.key (``more wg.key`` чтобы посмотреть его)
 
+2. Войти на [сайт](https://vpnaas.mekstack.ru) и вставить в поле "Your public key" скопированный ключ -> "set!"
+
+3. Скопировать сгенерованный wg0.conf конфиг, не забыв вместо YOUR_PRIVATE_KEY в строке "Your PrivateKey" вставить ваш приватный ключ из первого шага
+
+4. ``nano wg0.conf`` -> вставить конфиг
+
+5. Для включения/выключения VPN:
+   
 ``` bash
-    wg genkey | tee wg.key | wg pubkey
     sudo wg-quick up ./wg0.conf
     sudo wg-quick down ./wg0.conf
 ```
@@ -114,7 +123,7 @@ Floating IP выделяются из 172.18.218.0/23, к этой сетке е
     ping 172.18.218.2
 ```
 
-Если работает, то ссшься в свой сервер и делай что хочешь.  
+Если работает, то ссшься в свой сервер (``ssh -i ed25519 {user}@{floating_ip}``) и делай что хочешь.  
 В Ubuntu юзер ``ubuntu``, в Arch юзер ``arch``, в Debian юзер ``debian``.  
 Если не работает, то пиши в цулип.
 
@@ -124,28 +133,39 @@ Floating IP выделяются из 172.18.218.0/23, к этой сетке е
 Запустил сайтик на виртуалочке и хочешь чтобы люди в интернете тоже молги им полюбоваться?
 Настрой форвард траффика на него
 
-1. Сделай A запись для своего домена на публичный адрес мекстака: 194.190.152.81
+1. Сделай A запись для своего домена на публичный адрес мекстака: subdomen ``@``, Ip: ``89.175.46.233``
 
-2. DNS -> Zones -> Create Zone и указываешь там свой домен
+2. DNS -> Zones -> Create Zone и указываешь там свой домен (``your.domain.name.`` - точка в конце важна)
 
-3. Тык на зону -> Create Recordset -> В поле Record впиши Floating IP инстанса
+3. Выбрать зону -> Create Recordset -> В поле Record впиши Floating IP инстанса
 
-4. В [Security group](glossary.md#security-group) инстанса разреши ingress на 80 и 443 порты
+4. В [Security group](glossary.md#security-group) инстанса разреши ingress на 80 и 443 порты:
+   - Security Groups -> Manage Rules
+   - Add Rule:
+      * Rule: Custom TPC Rule
+      * Direction: Ingress
+      * Open port: Port
+      * Port: два отдельных правила - на 80 и на 443
+      * Remote: Security Group - default
 
 5. Теперь все интернет HTTP(S) пакеты, приходящие на 194.190.152.81 с ``Host/SNI
    == {{ твой домен }}`` будут отправляться на твой инстанс
-
-> Если у тебя нет домена, то первый шаг можно попросить сделать кого-нибудь с доменом
-> Или купи свой, они по сто рублей на год стоят
-
-
-Для TLS юзай [сертбота](https://certbot.eff.org/lets-encrypt/)
 
 Как это работает? Да [вот так](https://github.com/mekstack/mekstack/blob/master/infra/sneedaas/user-data.yaml).
 
 На картинке понятней.
 
 ![sneedas](images/sneedaas.png)
+
+> Если у тебя нет домена, то первый шаг можно попросить сделать кого-нибудь с доменом
+
+> Или купи свой (к примеру на [reg.ru](https://www.reg.ru/domain/new/)), они по сто рублей на первый год стоят
+
+6. Убедиться, что на вашем VPS **НЕ ВКЛЮЧЕН FIREWALL** (``sudo ufw status``) (или если включен, то порты 80 и 443 разрешены)
+
+7. Для простого статического сайта воспользоваться любым туториалом по nginx (к примеру от [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04) ) + настроить [certbot](https://certbot.eff.org/lets-encrypt/) для TSL
+
+
 
 ## Продолжение
 
