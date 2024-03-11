@@ -27,12 +27,12 @@ const config = {
             `https://github.com/mekstack/docs/edit/master/${docPath}`,
         },
         blog: false,
-        theme: {
-          customCss: [
-            // './node_modules/modern-normalize/modern-normalize.css',
-            // "./src/css/custom.scss",
-          ],
-        },
+        // theme: {
+        //   customCss: [
+        //     // './node_modules/modern-normalize/modern-normalize.css',
+        //     // "./src/css/custom.scss",
+        //   ],
+        // },
       },
     ],
   ],
