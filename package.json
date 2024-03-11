@@ -4,27 +4,46 @@
   "license": "MIT",
   "main": "serve.js",
   "scripts": {
-    "start": "npm run build:docs && node serve.js",
-    "build:docs": "yfm --input docs --output docs-html"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "postbuild": "node postprocess",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@diplodoc/cli": "^4.8.0",
-    "@doc-tools/docs": "^3.25.0",
-    "@gravity-ui/expresskit": "^0.4.0",
-    "@gravity-ui/nodekit": "^0.3.0",
-    "chokidar": "^3.5.3",
-    "cookie-session": "^2.0.0",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-csp-header": "^5.2.1",
-    "glob": "^10.3.4",
-    "lodash": "^4.17.21",
-    "octokit": "^3.1.0",
-    "open": "^8.4.2",
-    "parse5": "^7.1.2",
-    "parse5-utils": "^2.0.0",
-    "serve-static": "^1.15.0",
-    "undici": "^5.26.4",
-    "yfm": "^0.2.0"
+    "@docusaurus/core": "^3.1.1",
+    "@docusaurus/preset-classic": "^3.1.1",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "docusaurus": "^1.14.7",
+    "docusaurus-plugin-sass": "^0.2.5",
+    "modern-normalize": "^1.1.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "^3.1.1",
+    "@docusaurus/types": "^3.1.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
   }
 }
