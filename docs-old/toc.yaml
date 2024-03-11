@@ -1,0 +1,61 @@
+href: index.yaml
+navigation:
+  logo:
+    url: 'https://docs.mekstack.ru'
+    dark:
+      icon: 'https://storage.yandexcloud.net/mekstack-static/mekstack-logo.svg'
+      text: 'Docs'
+    light:
+      icon: 'https://storage.yandexcloud.net/mekstack-static/mekstack-logo.svg'
+      text: 'Docs'
+  header:
+    leftItems:
+      - text: 'Dashboard'
+        type: 'link'
+        url: 'https://mekstack.ru'
+      - text: 'Services'
+        type: 'dropdown'
+        items:
+          - text: 'VPNaaS'
+            url: 'https://vpnaas.mekstack.ru'
+            type: 'link'
+      - text: 'Contact'
+        type: 'link'
+        url: 'https://chat.miem.hse.ru/#narrow/stream/2057'
+      - text: 'Github'
+        type: 'link'
+        url: 'https://github.com/mekstack/'
+    rightItems:
+      - type: 'github-button'
+        text: 'Star'
+        label: 'Star @mekstack/mekstack on GitHub'
+        url: "https://github.com/mekstack/mekstack"
+      - type: 'controls'
+      - type: 'button'
+        text: 'Log In'
+        url: 'https://example.com'
+        theme: 'pseudo'
+    withBorder: false
+items:
+  - name: Обзор облака
+    expanded: true
+    items:
+      - name: Фичи
+        href: about/features.md
+      - name: Юзкейсы
+        href: about/usecases.md
+  - name: Quick Start
+    expanded: true
+    items:
+      - name: Обзор
+        href: quick-start/index.md
+      - name: Bluepill
+        href: quick-start/bluepill.md
+      - name: Redpill
+        href: quick-start/redpill.md
+      - name: VPNaaS
+        href: quick-start/vpnaas.md
+      - name: Публикация сайтов
+        href: quick-start/publish.md
+  - name: FAQ
+    #href:

@@ -1,2 +1,6 @@
 node_modules/
 docs-html/
+package-lock.json
+static/
+
+.docusaurus

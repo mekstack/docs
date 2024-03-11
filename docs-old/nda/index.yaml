@@ -1,0 +1,14 @@
+title: Mekstack NDA
+description:
+  - >
+    Внутренние документы мекстака
+
+meta:
+  title: NDA
+links:
+- title: ADR
+  description: Дизайн доки
+  href: adr/index
+- title: Типовые операции
+  description: Как поднять прод?
+  href: ops/index

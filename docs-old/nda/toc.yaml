@@ -1,0 +1,35 @@
+href: index.yaml
+navigation:
+  logo:
+    url: 'https://docs.mekstack.ru'
+    dark:
+      icon: 'https://storage.yandexcloud.net/mekstack-static/mekstack-logo.svg'
+      text: 'NDA'
+    light:
+      icon: 'https://storage.yandexcloud.net/mekstack-static/mekstack-logo.svg'
+      text: 'NDA'
+  header:
+    leftItems:
+      - text: 'Dashboard'
+        type: 'link'
+        url: 'https://mekstack.ru'
+      - text: 'VPNaaS'
+        type: 'link'
+        url: 'https://vpnaas.mekstack.ru'
+      - text: 'Zulip Chat'
+        type: 'link'
+        url: 'https://chat.miem.hse.ru/#narrow/stream/2057'
+      - text: 'Github'
+        type: 'link'
+        url: 'https://github.com/mekstack/'
+    rightItems:
+      - type: 'controls'
+items:
+  - name: ADR
+    expanded: true
+    href: adr/index.md
+    items:
+      - name: Наташа
+        href: adr/nataas
+      - name: Пиво
+        href: adr/pivo
