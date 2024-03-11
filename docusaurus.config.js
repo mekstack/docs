@@ -30,7 +30,7 @@ const config = {
         theme: {
           customCss: [
             // './node_modules/modern-normalize/modern-normalize.css',
-            "./src/css/custom.scss",
+            // "./src/css/custom.scss",
           ],
         },
       },
